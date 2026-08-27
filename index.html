@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORGAChat - Organisasi Sekolah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-box">
+
+        <div class="logo">🏫</div>
+
+        <h1>ORGA<span>Chat</span></h1>
+
+        <p>
+            Ruang komunikasi organisasi sekolah
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Masukkan username"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Masukkan password"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+                Masuk
+            </button>
+
+        </form>
+
+        <p class="demo-text">
+
+            Belum punya akun?
+
+            <button
+                type="button"
+                id="showRegister"
+                class="register-link"
+            >
+                Daftar sekarang
+            </button>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     REGISTER
+===================================================== -->
+
+<div id="registerPage" class="login-page hidden">
+
+    <div class="login-box">
+
+        <div class="logo">👤</div>
+
+        <h1>Daftar <span>ORGAChat</span></h1>
+
+        <p>
+            Bergabung dengan organisasi
+        </p>
+
+        <form id="registerForm">
+
+            <div class="input-group">
+
+                <label>Nama Lengkap</label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Nama lengkap"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    id="registerUsername"
+                    placeholder="Username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Minimal 6 karakter"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Konfirmasi Password</label>
+
+                <input
+                    type="password"
+                    id="registerConfirmPassword"
+                    placeholder="Ulangi password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Divisi</label>
+
+                <select id="registerDivision">
+
+                    <option value="Pengurus Inti">
+                        Pengurus Inti
+                    </option>
+
+                    <option value="IT">
+                        Divisi IT
+                    </option>
+
+                    <option value="Humas">
+                        Humas
+                    </option>
+
+                    <option value="Jurnalistik">
+                        Jurnalistik
+                    </option>
+
+                    <option value="Dokumentasi">
+                        Dokumentasi
+                    </option>
+
+                    <option value="Acara">
+                        Acara
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Jabatan</label>
+
+                <select id="registerRole">
+
+                    <option value="Anggota">
+                        Anggota
+                    </option>
+
+                    <option value="Pengurus">
+                        Pengurus
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+                Buat Akun
+            </button>
+
+        </form>
+
+
+        <p class="demo-text">
+
+            Sudah punya akun?
+
+            <button
+                type="button"
+                id="showLogin"
+                class="register-link"
+            >
+                Kembali ke Login
+            </button>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<div id="app" class="app hidden">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🏫
+            </div>
+
+            <div>
+
+                <h2>ORGAChat</h2>
+
+                <small>
+                    Organisasi Sekolah
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="user-card">
+
+            <div
+                class="avatar"
+                id="userAvatar"
+            >
+                U
+            </div>
+
+            <div class="user-info">
+
+                <strong id="displayUsername">
+                    User
+                </strong>
+
+                <small>
+                    <span class="online-dot"></span>
+                    Online
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="menu">
+
+            <button
+                class="menu-item active"
+                data-page="dashboard"
+            >
+                <span>🏠</span>
+                Dashboard
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="chat"
+            >
+                <span>💬</span>
+                Chat
+
+                <span
+                    class="badge"
+                    id="chatBadge"
+                >
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="announcement"
+            >
+                <span>📢</span>
+                Pengumuman
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="agenda"
+            >
+                <span>📅</span>
+                Agenda
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="members"
+            >
+                <span>👥</span>
+                Anggota
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="profile"
+            >
+                <span>👤</span>
+                Profil Saya
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="settings"
+            >
+                <span>⚙️</span>
+                Pengaturan
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                id="darkModeBtn"
+                class="menu-item"
+            >
+                <span>🌙</span>
+                Mode Gelap
+            </button>
+
+
+            <button
+                id="logoutBtn"
+                class="menu-item logout"
+            >
+                <span>🚪</span>
+                Keluar
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h2 id="pageTitle">
+                    Dashboard
+                </h2>
+
+                <p id="pageDescription">
+                    Ringkasan aktivitas organisasi
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification">
+                    🔔
+                    <span></span>
+                </button>
+
+
+                <div class="top-profile">
+
+                    <div
+                        class="avatar small"
+                        id="topAvatar"
+                    >
+                        U
+                    </div>
+
+                    <span id="topUsername">
+                        User
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <div
+                id="dashboardPage"
+                class="page"
+            >
+
+                <div class="welcome">
+
+                    <div>
+
+                        <h1>
+                            Halo,
+                            <span id="welcomeName">
+                                User
+                            </span>! 👋
+                        </h1>
+
+                        <p>
+                            Selamat datang di ORGAChat.
+                        </p>
+
+                    </div>
+
+                    <div class="welcome-icon">
+                        💬
+                    </div>
+
+                </div>
+
+
+                <div class="stats">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            💬
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Total Pesan
+                            </span>
+
+                            <strong
+                                id="totalMessages"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            👥
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Anggota
+                            </span>
+
+                            <strong
+                                id="totalMembers"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            📢
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Pengumuman
+                            </span>
+
+                            <strong>
+                                5
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            📅
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Agenda
+                            </span>
+
+                            <strong>
+                                3
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+
+                    <!-- PENGUMUMAN -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <h3>
+                                📢 Pengumuman Terbaru
+                            </h3>
+
+                            <button
+                                class="link-btn"
+                                onclick="showPage('announcement')"
+                            >
+                                Lihat semua
+                            </button>
+
+                        </div>
+
+
+                        <div class="announcement-item">
+
+                            <div class="announcement-icon">
+                                📢
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Rapat Pengurus
+                                </h4>
+
+                                <p>
+                                    Rapat pengurus
+                                    akan dilaksanakan
+                                    besok pukul 15.00.
+                                </p>
+
+                                <small>
+                                    Hari ini
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="announcement-item">
+
+                            <div class="announcement-icon">
+                                🎯
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Persiapan Acara
+                                </h4>
+
+                                <p>
+                                    Semua divisi
+                                    harap menyiapkan
+                                    laporan.
+                                </p>
+
+                                <small>
+                                    Kemarin
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AGENDA -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <h3>
+                                📅 Agenda Mendatang
+                            </h3>
+
+                            <button
+                                class="link-btn"
+                                onclick="showPage('agenda')"
+                            >
+                                Lihat semua
+                            </button>
+
+                        </div>
+
+
+                        <div class="agenda-item">
+
+                            <div class="date-box">
+
+                                <strong>
+                                    28
+                                </strong>
+
+                                <span>
+                                    AGU
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Rapat Pengurus
+                                </h4>
+
+                                <p>
+                                    15.00 • Ruang Organisasi
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="agenda-item">
+
+                            <div class="date-box">
+
+                                <strong>
+                                    30
+                                </strong>
+
+                                <span>
+                                    AGU
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Persiapan Acara
+                                </h4>
+
+                                <p>
+                                    14.00 • Aula Sekolah
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CHAT TERBARU -->
+
+                <div class="card recent-chat">
+
+                    <div class="card-header">
+
+                        <h3>
+                            💬 Chat Terbaru
+                        </h3>
+
+                        <button
+                            class="link-btn"
+                            onclick="showPage('chat')"
+                        >
+                            Buka chat
+                        </button>
+
+                    </div>
+
+
+                    <div id="recentMessages">
+
+                        <div class="message-preview">
+
+                            <div class="avatar">
+                                A
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Ahmad
+                                </strong>
+
+                                <p>
+                                    Jangan lupa rapat besok.
+                                </p>
+
+                            </div>
+
+                            <small>
+                                10:32
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CHAT
+            ================================================== -->
+
+            <div
+                id="chatPage"
+                class="page hidden"
+            >
+
+                <div class="chat-container">
+
+
+                    <!-- CHAT LIST -->
+
+                    <div class="chat-list">
+
+                        <div class="chat-search">
+
+                            <input
+                                type="text"
+                                id="searchChat"
+                                placeholder="🔍 Cari..."
+                            >
+
+                        </div>
+
+
+                        <div class="chat-list-title">
+                            GRUP
+                        </div>
+
+
+                        <div
+                            class="chat-contact active"
+                            data-chat="Umum"
+                        >
+
+                            <div class="chat-avatar">
+                                🌐
+                            </div>
+
+                            <div class="chat-contact-info">
+
+                                <strong>
+                                    Umum
+                                </strong>
+
+                                <p>
+                                    Chat organisasi
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="chat-contact"
+                            data-chat="Pengurus"
+                        >
+
+                            <div class="chat-avatar">
+                                👑
+                            </div>
+
+                            <div class="chat-contact-info">
+
+                                <strong>
+                                    Pengurus
+                                </strong>
+
+                                <p>
+                                    Grup pengurus
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="chat-contact"
+                            data-chat="IT"
+                        >
+
+                            <div class="chat-avatar">
+                                💻
+                            </div>
+
+                            <div class="chat-contact-info">
+
+                                <strong>
+                                    Divisi IT
+                                </strong>
+
+                                <p>
+                                    Grup IT
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="chat-list-title">
+                            ANGGOTA
+                        </div>
+
+
+                        <div
+                            id="memberChatList"
+                        >
+                        </div>
+
+                    </div>
+
+
+                    <!-- CHAT WINDOW -->
+
+                    <div class="chat-window">
+
+
+                        <div class="chat-header">
+
+                            <div
+                                class="chat-header-info"
+                            >
+
+                                <div
+                                    class="chat-avatar"
+                                    id="currentChatAvatar"
+                                >
+                                    🌐
+                                </div>
+
+                                <div>
+
+                                    <h3
+                                        id="currentChatName"
+                                    >
+                                        Umum
+                                    </h3>
+
+                                    <p
+                                        id="currentChatStatus"
+                                    >
+                                        Grup organisasi
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="chat-actions">
+
+                                <button>
+                                    ⋮
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="messages"
+                            id="messages"
+                        >
+
+                            <div class="message-date">
+                                Hari ini
+                            </div>
+
+
+                            <div class="message received">
+
+                                <div class="message-avatar">
+                                    A
+                                </div>
+
+                                <div>
+
+                                    <div class="message-name">
+                                        Ahmad
+                                    </div>
+
+                                    <div class="message-bubble">
+                                        Halo semuanya 👋
+                                    </div>
+
+                                    <span class="message-time">
+                                        10:30
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="message received">
+
+                                <div class="message-avatar">
+                                    R
+                                </div>
+
+                                <div>
+
+                                    <div class="message-name">
+                                        Rizal
+                                    </div>
+
+                                    <div class="message-bubble">
+                                        Halo Ahmad.
+                                    </div>
+
+                                    <span class="message-time">
+                                        10:31
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div id="imagePreview" class="image-preview hidden">
+
+    <img
+        id="previewImage"
+        src=""
+        alt="Preview gambar"
+    >
+
+    <button
+        type="button"
+        id="cancelImage"
+    >
+        ✕
+    </button>
+
+</div>
+
+                        <form
+                            class="message-input"
+                            id="messageForm"
+                        >
+
+                            <button
+                                  type="button"
+                                  class="attach-btn"
+                                  id="attachBtn"
+                                  title="Kirim gambar"
+>                                 📎 
+                            </button>
+
+                      <input
+                                 type="file"
+                                 id="imageInput"
+                                 accept="image/png,image/jpeg,image/webp"
+                                 hidden
+                    >
+            <div
+                       id="imagePreview"
+                       class="image-preview hidden"
+                    >
+                    <img
+                       id="previewImage"
+                       src=""
+                       alt="Preview gambar"
+                    >
+ 
+               <button
+                  type="button"
+                 id="cancelImage"
+                >
+                   ✕
+              </button>
+            </div>
+
+                            <input  
+                                type="text"
+                                id="messageInput"
+                                placeholder="Tulis pesan..."
+                                autocomplete="off"
+                            >
+
+                            <button
+                                type="submit"
+                                class="send-btn"
+                            >
+                                ➤
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PENGUMUMAN
+            ================================================== -->
+
+            <div
+                id="announcementPage"
+                class="page hidden"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h1>
+                            📢 Pengumuman
+                        </h1>
+
+                        <p>
+                            Informasi organisasi
+                        </p>
+
+                    </div>
+
+                    <button class="primary-btn">
+                        + Buat Pengumuman
+                    </button>
+
+                </div>
+
+
+                <div class="announcement-grid">
+
+
+                    <div class="large-announcement">
+
+                        <div class="announcement-top">
+
+                            <span>
+                                📢 PENTING
+                            </span>
+
+                            <small>
+                                24 Agustus 2026
+                            </small>
+
+                        </div>
+
+
+                        <h2>
+                            Rapat Pengurus
+                        </h2>
+
+
+                        <p>
+                            Rapat pengurus akan
+                            dilaksanakan besok
+                            pukul 15.00.
+                        </p>
+
+
+                        <div class="announcement-author">
+                            👤 Ketua Organisasi
+                        </div>
+
+                    </div>
+
+
+                    <div class="large-announcement">
+
+                        <div class="announcement-top">
+
+                            <span>
+                                🎯 KEGIATAN
+                            </span>
+
+                            <small>
+                                23 Agustus 2026
+                            </small>
+
+                        </div>
+
+
+                        <h2>
+                            Persiapan Acara
+                        </h2>
+
+
+                        <p>
+                            Setiap divisi diminta
+                            menyiapkan laporan.
+                        </p>
+
+
+                        <div class="announcement-author">
+                            👤 Sekretaris
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 AGENDA
+            ================================================== -->
+
+            <div
+                id="agendaPage"
+                class="page hidden"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h1>
+                            📅 Agenda Organisasi
+                        </h1>
+
+                        <p>
+                            Jadwal kegiatan
+                        </p>
+
+                    </div>
+
+                    <button class="primary-btn">
+                        + Tambah Agenda
+                    </button>
+
+                </div>
+
+
+                <div class="agenda-list">
+
+
+                    <div class="agenda-card">
+
+                        <div class="big-date">
+
+                            <strong>
+                                28
+                            </strong>
+
+                            <span>
+                                AGUSTUS
+                            </span>
+
+                        </div>
+
+
+                        <div class="agenda-detail">
+
+                            <span class="agenda-label">
+                                RAPAT
+                            </span>
+
+                            <h2>
+                                Rapat Pengurus
+                            </h2>
+
+                            <p>
+                                Membahas kegiatan
+                                organisasi.
+                            </p>
+
+                            <div class="agenda-meta">
+
+                                ⏰ 15.00 WIB
+                                &nbsp;&nbsp;
+                                📍 Ruang Organisasi
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="agenda-card">
+
+                        <div class="big-date">
+
+                            <strong>
+                                30
+                            </strong>
+
+                            <span>
+                                AGUSTUS
+                            </span>
+
+                        </div>
+
+
+                        <div class="agenda-detail">
+
+                            <span class="agenda-label">
+                                KEGIATAN
+                            </span>
+
+                            <h2>
+                                Persiapan Acara
+                            </h2>
+
+                            <p>
+                                Persiapan perlengkapan.
+                            </p>
+
+                            <div class="agenda-meta">
+
+                                ⏰ 14.00 WIB
+                                &nbsp;&nbsp;
+                                📍 Aula Sekolah
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MEMBERS
+            ================================================== -->
+
+            <div
+                id="membersPage"
+                class="page hidden"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h1>
+                            👥 Anggota
+                        </h1>
+
+                        <p>
+                            Anggota organisasi
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        class="member-search"
+                        id="memberSearch"
+                        placeholder="🔍 Cari anggota..."
+                    >
+
+                </div>
+
+
+                <div
+                    class="members-grid"
+                    id="membersGrid"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PROFILE
+            ================================================== -->
+
+            <div
+                id="profilePage"
+                class="page hidden"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h1>
+                            👤 Profil Saya
+                        </h1>
+
+                        <p>
+                            Informasi akun
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-container">
+
+
+                    <div class="profile-header">
+
+                        <div
+                            class="profile-avatar"
+                            id="profileAvatar"
+                        >
+                            U
+                        </div>
+
+
+                        <div>
+
+                            <h2
+                                id="profileName"
+                            >
+                                User
+                            </h2>
+
+                            <p
+                                id="profileUsername"
+                            >
+                                @username
+                            </p>
+
+                            <span
+                                class="role-badge"
+                                id="profileRole"
+                            >
+                                Anggota
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="profile-information"
+                    >
+
+
+                        <div class="profile-field">
+
+                            <label>
+                                Nama Lengkap
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profileFullName"
+                            >
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label>
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profileUsernameInput"
+                                disabled
+                            >
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label>
+                                Divisi
+                            </label>
+
+                            <select
+                                id="profileDivision"
+                            >
+
+                                <option>
+                                    Pengurus Inti
+                                </option>
+
+                                <option>
+                                    IT
+                                </option>
+
+                                <option>
+                                    Humas
+                                </option>
+
+                                <option>
+                                    Jurnalistik
+                                </option>
+
+                                <option>
+                                    Dokumentasi
+                                </option>
+
+                                <option>
+                                    Acara
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label>
+                                Jabatan
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profileRoleInput"
+                                disabled
+                            >
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label>
+                                ID Anggota
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profileId"
+                                disabled
+                            >
+
+                        </div>
+
+
+                        <button
+                            class="primary-btn"
+                            id="saveProfile"
+                        >
+                            💾 Simpan Perubahan
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SETTINGS
+            ================================================== -->
+
+            <div
+                id="settingsPage"
+                class="page hidden"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h1>
+                            ⚙️ Pengaturan
+                        </h1>
+
+                        <p>
+                            Pengaturan website
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-card">
+
+                    <h3>
+                        Tampilan
+                    </h3>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Mode Gelap
+                            </strong>
+
+                            <p>
+                                Ubah tampilan website
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            id="settingDarkMode"
+                            class="toggle"
+                        >
+                            🌙
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast"
+>
+    Berhasil
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
